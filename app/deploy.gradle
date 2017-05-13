@@ -1,0 +1,14 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.hidetake:gradle-ssh-plugin:2.8.0'
+    }
+}
+
+task deployApk(type: Exec) {
+    commandLine 'scp', "${project.rootDir}/app/build/outputs/apk/app-debug.apk", "$DEPLOY_HOST/home-controller-android-${gitVersionName}.apk"
+} << {
+    println "Upload finished!"
+}

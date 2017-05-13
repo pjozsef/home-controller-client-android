@@ -1,4 +1,5 @@
 apply from: 'https://gist.githubusercontent.com/pjozsef/34b13acff0088ca5c120a4f9a52de52c/raw'
+apply from: 'deploy.gradle'
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'

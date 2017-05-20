@@ -4,16 +4,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.getkeepsafe.dexcount'
-
-buildscript {
-    repositories {
-        mavenCentral() // or jcenter()
-    }
-
-    dependencies {
-        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.6.4'
-    }
-}
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 25
@@ -25,7 +16,13 @@ android {
         versionCode gitVersionCode
         versionName gitVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders = [host: HOST, port: PORT, udpToken: UDP_TOKEN, httpToken: HTTP_TOKEN, serverPort: SERVER_PORT]
+        manifestPlaceholders = [
+                host       : HOST,
+                port       : PORT,
+                udpToken   : UDP_TOKEN,
+                httpToken  : HTTP_TOKEN,
+                serverPort : SERVER_PORT,
+                fabricToken: FABRIC_TOKEN]
     }
     buildTypes {
         release {
@@ -58,7 +55,12 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    compile('com.crashlytics.sdk.android:crashlytics:+@aar') {
+        transitive = true;
+    }
 }
 repositories {
     mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
 }

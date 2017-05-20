@@ -28,6 +28,10 @@
         <meta-data
             android:name="serverPort"
             android:value="${serverPort}" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${fabricToken}"
+            />
 
         <activity android:name=".main.MainActivity">
             <intent-filter>
